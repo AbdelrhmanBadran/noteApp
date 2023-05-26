@@ -19,6 +19,7 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.getNotes()
+    console.log(this._AuthService.userdata.getValue()._id);
 
 
   }
@@ -66,20 +67,22 @@ export class HomeComponent {
       next:result =>{
         if (result === 'update') {
           this.getNotes()
-        } 
+        }
       }
     })
-    
+
   }
 
 
   delete(id:string , index:number):void{
+
     const noteData ={
       body:{
         NoteID:id,
         token: localStorage.getItem('uToken')!
       }
     }
+
 
     console.log(noteData);
     this.notes.splice(index ,1)

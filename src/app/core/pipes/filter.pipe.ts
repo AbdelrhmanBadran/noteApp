@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(notes: any[], searchTerm:string): any[] {
-    return notes?.filter(note => note.title.toLowerCase().includes(searchTerm))
+    return notes?.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase()))
   }
 
 }

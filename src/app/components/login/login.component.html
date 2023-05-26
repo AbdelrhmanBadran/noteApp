@@ -29,7 +29,7 @@
               <div class="example-container">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Enter your password</mat-label>
-                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" autocomplete>
                   <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
@@ -40,7 +40,7 @@
             </div>
 
             <div class="col-12">
-              <button mat-raised-button extended color="primary" class="w-100" [disabled]="loginForm.invalid">
+              <button mat-raised-button extended color="primary" class="w-100">
                 <mat-icon *ngIf="!loading">send</mat-icon>
                 <i class="fas fa-spin fa-spinner" *ngIf="loading"></i>
                 login

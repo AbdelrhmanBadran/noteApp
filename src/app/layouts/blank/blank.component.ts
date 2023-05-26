@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class BlankComponent {
   constructor(private AuthService:AuthService){ }
-  
+
   logout(){
     this.AuthService.logout()
   }

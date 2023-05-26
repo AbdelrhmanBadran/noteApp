@@ -17,7 +17,9 @@ export class AuthService {
   userdata:BehaviorSubject<any> = new BehaviorSubject(null)
 
   decode(){
+
     let incode = localStorage.getItem('uToken')
+
     if (incode !== null) {
       let decode = jwt_decode(incode)
       this.userdata.next(decode)

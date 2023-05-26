@@ -33,7 +33,7 @@
                     <mat-icon>edit</mat-icon>
                     Update
                   </button>
-                  <button mat-menu-item [swal]="deleteSwal" >
+                  <button mat-menu-item   [swal]="deleteSwal">
                     <mat-icon>delete_outline</mat-icon>
                     Delete
                   </button>
@@ -44,7 +44,8 @@
                       icon="question"
                       [showCancelButton]="true"
                       [focusCancel]="true"
-                      (confirm)="delete(note?._id , index)">
+                      (confirm)="delete(note?._id , index)"
+                      >
                     </swal>
                 </mat-menu>
               </div>

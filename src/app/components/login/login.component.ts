@@ -33,14 +33,41 @@ export class LoginComponent {
   login(){
 
     if (this.loginForm.valid) {
+      this._AuthService.login(this.loginForm.value).subscribe({
+        next:res=>{
+          console.log(res);
+          if (res.message == 'success') {
+            localStorage.setItem('uToken',  res.token)
+            this.loading = false
+            this._AuthService.decode()
+            this._toastr.success(res.message, 'Login Successfully');
+
+          }else{
+            this._toastr.error(res.message , 'error');
+          }
+
+        },
+        error:err=>{
+          console.log(err);
+          this.loading = false
+
+        }
+      })
+    }
+
+  }
+}
+
+
+/**
+ * if (this.loginForm.valid) {
       this.loading = true
       this._AuthService.login(this.loginForm.value).subscribe({
         next: res=>{
           console.log(res);
           if (res.message == 'success') {
             localStorage.setItem('uToken' , res.token)
-            this._AuthService.decode()
-
+            // this._AuthService.decode()
             this._Router.navigate(['/home'])
             this.loading = false
             this._toastr.success(res.message, 'Login Successfully');
@@ -57,6 +84,4 @@ export class LoginComponent {
         }
       })
     }
-
-  }
-}
+ */

@@ -64,7 +64,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     NgxSpinnerModule,
     SweetAlert2Module.forRoot(),
     MatMenuModule,
-    
     ToastrModule.forRoot(),
   ],
   providers: [

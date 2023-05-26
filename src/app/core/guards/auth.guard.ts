@@ -11,17 +11,11 @@ export const auth:CanActivateFn = (
   const auth = inject(AuthService)
   const router = inject(Router)
 
-
   if (auth.userdata.getValue() !== null) {
     return true
   }else{
     router.navigate(['/login'])
     return false
   }
-
-
-
-
-
 
 }
