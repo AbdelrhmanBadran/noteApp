@@ -9,24 +9,29 @@ export class NoteService {
 
   constructor(private http:HttpClient) { }
 
+  baseUrl:string = 'https://note-sigma-black.vercel.app/api/v1/notes';
+  headers:any = {
+    'token' : '3b8ny__'+localStorage.getItem('uToken')
+  }
+
   addNote(noteData:object):Observable<any>
   {
-    return this.http.post('https://sticky-note-fe.vercel.app/addNote' , noteData)
-  }
-  updateNote(noteData:object):Observable<any>
-  {
-    return this.http.put('https://sticky-note-fe.vercel.app/updateNote' , noteData)
-  }
-  getAllNotes(noteData:object):Observable<any>
-  {
-    return this.http.post('https://sticky-note-fe.vercel.app/getUserNotes' , noteData)
+    return this.http.post(this.baseUrl , noteData , { headers : this.headers})
   }
 
-  deleteNote(noteData:object):Observable<any>
+  getAllNotes():Observable<any>
   {
-    return this.http.delete('https://sticky-note-fe.vercel.app/deleteNote' , noteData)
+    return this.http.get(this.baseUrl ,{ headers : this.headers})
   }
-  
 
+  updateNote(noteData:object , id:string):Observable<any>
+  {
+    return this.http.put(this.baseUrl + '/' + id , noteData , { headers : this.headers})
+  }
+
+  deleteNote(id:string):Observable<any>
+  {
+    return this.http.delete(this.baseUrl + '/' + id , { headers : this.headers})
+  }
 
 }

@@ -12,7 +12,8 @@ import {MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog'
 })
   export class NoteDataComponent {
 
-    constructor(private _FormBuilder:FormBuilder , private _NoteService:NoteService , private _AuthService:AuthService , private toastr: ToastrService , private MatDialogRef:MatDialogRef<NoteDataComponent> , @Inject(MAT_DIALOG_DATA) public data:any){ }
+    constructor(private _FormBuilder:FormBuilder , private _NoteService:NoteService , private _AuthService:AuthService , private toastr: ToastrService , private MatDialogRef:MatDialogRef<NoteDataComponent> , @Inject(MAT_DIALOG_DATA) public data:any){
+    }
 
     citizenID!:string
     token!:string
@@ -22,14 +23,14 @@ import {MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog'
       this.citizenID = this._AuthService.userdata.getValue()._id
       this.token = localStorage.getItem('uToken')!
       this.createForm()
-      console.log(this.data);
-      
+      //console.log(this.data);
+
     }
 
     createForm(){
     this.DataForm =  this._FormBuilder.group({
       title:[this.data == null ? '':this.data?.note.title , [Validators.required]],
-      desc:[this.data == null ? '':this.data?.note.desc , [Validators.required]],
+      content:[this.data == null ? '':this.data?.note.content , [Validators.required]],
       token:[this.token],
       })
     }
@@ -55,7 +56,7 @@ import {MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog'
       this._NoteService.addNote(data).subscribe({
         next:res=>{
           console.log(res);
-          if (res.message == 'success') {
+          if (res.msg == 'done') {
             this.toastr.success('Note Added successfully', 'success');
             this.MatDialogRef.close('done')
           }
@@ -74,11 +75,11 @@ import {MatDialogRef , MAT_DIALOG_DATA} from '@angular/material/dialog'
         ...this.DataForm.value,
         'NoteID': this.data.note._id
       }
-
-      this._NoteService.updateNote(data).subscribe({
+      let id = this.data.note._id
+      this._NoteService.updateNote(data , id ).subscribe({
         next:res=>{
           console.log(res);
-          if (res.message == 'updated') {
+          if (res.msg == 'done') {
             this.toastr.success('Note Updated successfully', 'success');
             this.MatDialogRef.close('update')
           }

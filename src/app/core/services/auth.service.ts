@@ -13,6 +13,7 @@ export class AuthService {
     this.decode()
 
   }
+  baseUrl:string = 'https://note-sigma-black.vercel.app/api/v1/users/';
 
   userdata:BehaviorSubject<any> = new BehaviorSubject(null)
 
@@ -29,11 +30,11 @@ export class AuthService {
 
   register(userData:any):Observable<any>
   {
-    return this._HttpClient.post('https://sticky-note-fe.vercel.app/signup' , userData)
+    return this._HttpClient.post(`${this.baseUrl}signUp`   , userData)
   }
   login(userData:any):Observable<any>
   {
-    return this._HttpClient.post('https://sticky-note-fe.vercel.app/signin' , userData)
+    return this._HttpClient.post(`${this.baseUrl}signIn` , userData)
   }
   logout(){
     localStorage.removeItem('uToken')

@@ -14,7 +14,7 @@ import { FilterPipe } from './core/pipes/filter.pipe';
 import { AuthComponent } from './layouts/auth/auth.component';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import {MatBadgeModule} from '@angular/material/badge';
+import {MatBadgeModule} from '../../node_modules/@angular/material/badge';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -52,7 +52,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     NgbModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatBadgeModule,
     MatButtonModule,
     MatIconModule,
     FormsModule,

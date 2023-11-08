@@ -3,19 +3,40 @@
     <h2 class="text-center display-4">Note Data</h2>
     <mat-form-field class="w-100" appearance="outline">
       <mat-label>Title</mat-label>
-      <input matInput placeholder="Ex. Note1" formControlName="title">
-      <mat-error *ngIf="DataForm.get('title')?.getError('required')">Title Is <strong>required</strong></mat-error>
+      <input matInput placeholder="Ex. Note1" formControlName="title" />
+      <mat-error *ngIf="DataForm.get('title')?.getError('required')"
+        >Title Is <strong>required</strong></mat-error
+      >
     </mat-form-field>
 
     <mat-form-field class="w-100 mt-5" appearance="outline">
       <mat-label>Leave a note</mat-label>
-      <textarea matInput placeholder="Ex. It makes me feel..." formControlName="desc"></textarea>
-      <mat-error *ngIf="DataForm.get('desc')?.getError('required')">description Is <strong>required</strong></mat-error>
+      <textarea
+        matInput
+        placeholder="Ex. It makes me feel..."
+        formControlName="content"
+      ></textarea>
+      <mat-error *ngIf="DataForm.get('content')?.getError('required')"
+        >content Is <strong>required</strong></mat-error
+      >
     </mat-form-field>
 
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="DataForm.invalid"
+      *ngIf="data === null"
+    >
+      Add Note
+    </button>
 
-    <button mat-raised-button color="primary" [disabled]="DataForm.invalid" *ngIf="data === null">Add Note</button>
-    
-    <button *ngIf="data !== null" mat-raised-button color="warn" [disabled]="DataForm.invalid">Update Note</button>
+    <button
+      *ngIf="data !== null"
+      mat-raised-button
+      color="warn"
+      [disabled]="DataForm.invalid"
+    >
+      Update Note
+    </button>
   </form>
 </section>

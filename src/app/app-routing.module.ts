@@ -11,7 +11,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
 
-  {path:'' , component:BlankComponent , canActivate:[auth] , children:[
+  {path:'' , component:BlankComponent  , canActivate:[auth] , children:[
     {path:'' , redirectTo:'home' , pathMatch:'full'},
     {path:'home' , component:HomeComponent , title:'home'},
     {path:'note' , component:NoteDataComponent , title:'note'}

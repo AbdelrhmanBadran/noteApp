@@ -19,9 +19,6 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.getNotes()
-    console.log(this._AuthService.userdata.getValue()._id);
-
-
   }
 
 
@@ -30,13 +27,14 @@ export class HomeComponent {
       token:localStorage.getItem('uToken'),
       userID:this._AuthService.userdata.getValue()._id
     }
-    this._NoteService.getAllNotes(data).subscribe({
+    this._NoteService.getAllNotes().subscribe({
       next:res=>{
         console.log(res);
-        if (res.message  === 'success') {
-          this.notes = res.Notes
+
+        if (res.msg  === 'done') {
+          this.notes = res.notes
         }else{
-          this.emptyMsg = res.message
+          this.emptyMsg = res.msg
         }
       },
       error:err=>{
@@ -50,7 +48,6 @@ export class HomeComponent {
     const dialogRef = this.dialog.open(NoteDataComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       if (result === 'done') {
         this.getNotes()
       }
@@ -88,12 +85,12 @@ export class HomeComponent {
     this.notes.splice(index ,1)
     this.notes = [...this.notes]
 
-    this._NoteService.deleteNote(noteData).subscribe({
+    this._NoteService.deleteNote(id).subscribe({
       next:res=>{
-        console.log(res);
+        //console.log(res);
       },
       error:err=>{
-        console.log(err);
+       // console.log(err);
       }
     })
 

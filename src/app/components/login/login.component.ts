@@ -24,8 +24,8 @@ export class LoginComponent {
 
   ceateForm(){
   this.loginForm = new FormGroup({
-      email: new FormControl(null , [Validators.required , Validators.pattern(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/)]),
-      password: new FormControl(null , [Validators.required , Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
+    email:new FormControl('',[Validators.required,Validators.email]),
+    password: new FormControl(null , [Validators.required , Validators.pattern(/^[A-Z][a-z0-9]{8,16}$/)]),
     })
   }
 
@@ -36,19 +36,14 @@ export class LoginComponent {
       this._AuthService.login(this.loginForm.value).subscribe({
         next:res=>{
           console.log(res);
-          if (res.message == 'success') {
-            localStorage.setItem('uToken',  res.token)
-            this.loading = false
-            this._AuthService.decode()
-            this._toastr.success(res.message, 'Login Successfully');
-
-          }else{
-            this._toastr.error(res.message , 'error');
-          }
-
+          localStorage.setItem('uToken',  res.token)
+          this.loading = false
+          this._AuthService.decode()
+          this._toastr.success(res.msg, 'Login Successfully');
         },
         error:err=>{
           console.log(err);
+          this._toastr.error(err.error.msg , 'error');
           this.loading = false
 
         }

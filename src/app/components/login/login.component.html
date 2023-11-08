@@ -21,7 +21,7 @@
                   <mat-label>Enter your email</mat-label>
                   <input matInput placeholder="ex.pat@example.com" formControlName="email" required>
                   <mat-error *ngIf="loginForm.get('email')?.getError('required')">Email is rquired</mat-error>
-                  <mat-error *ngIf="loginForm.get('email')?.getError('pattern')">Enter Valid Email</mat-error>
+                  <mat-error *ngIf="loginForm.get('email')?.getError('email')">Enter Valid Email</mat-error>
                 </mat-form-field>
               </div>
             </div>
