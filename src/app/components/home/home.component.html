@@ -55,11 +55,11 @@
                   </button>
                   <button mat-menu-item [swal]="deleteSwal">
                     <mat-icon>delete_outline</mat-icon>
-                    Delete 
+                    Delete
                   </button>
                   <swal
                     #deleteSwal
-                    title="Delete {{ note.title }}?"
+                    title="Delete {{note.title}}?"
                     text="This cannot be undone"
                     icon="question"
                     [showCancelButton]="true"
